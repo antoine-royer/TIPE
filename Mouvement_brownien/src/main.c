@@ -27,17 +27,3 @@ int main(void)
 	
 	return 0;
 }
-
-
-/*
-	// Initialisation de la SDL
-	SDL_Init(SDL_INIT_VIDEO);
-	SDL_CreateWindowAndRenderer(WIN_W, WIN_H, SDL_WINDOW_SHOWN, &window, &renderer);
-
-	// Initialisation du rendu
-	SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-	SDL_RenderClear(renderer);
-	SDL_RenderPresent(renderer);
-	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-	SDL_SetWindowTitle(window, "Mouvement brownien [CHARGEMENT EN COURS]");
-*/
