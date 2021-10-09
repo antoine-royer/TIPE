@@ -17,35 +17,37 @@ void sdl_initialisation(SDL_Window **window, SDL_Renderer **renderer)
 	SDL_SetWindowTitle(*window, "Mouvement brownien [CHARGEMENT EN COURS]");
 }
 
-void mainloop(SDL_Renderer *renderer)
+
+void compute_render(SDL_Renderer *renderer)
 {
 	// Initialisation des coordonées du premier point
 	int x = WIN_W / 2;
 	int y = WIN_H / 2;
 	
-	for (int i = 0; i < NB_PTS; i++)
+	for (int i = 0; i < NB_STEP; i++)
 	{
 		// Envoie du point courant sur le buffer
 		SDL_RenderDrawPoint(renderer, x, y);
+		SDL_RenderDrawPoint(renderer, x, y);
 
 		// Calcul du point suivant
-		switch (randint(1, 5))
+		int direction = randint(0, 2);
+		if (direction == 0 || direction == 2)
 		{
-			case 1:
-				x --;
-				break;
-			case 2:
-				x ++;
-				break;
-			case 3:
-				y --;
-				break;
-			case 4:
-				y ++;
-				break;
+			if (DX > randint(0, 100)) x ++;
+			else x --;
 		}
-		y = y % WIN_H;
-		x = x % WIN_W;
+		if (direction == 1 || direction == 2)
+		{
+			if (DY > randint(0, 100)) y --;
+			else y ++;
+		}
+		
+		if (y <= 0) y = 0;
+		if (y >= WIN_H) y = WIN_H;
+		if (x <= 0) x = 0;
+		if (x >= WIN_W) x = WIN_W;
+		
 	}
 	SDL_RenderPresent(renderer);
 }
@@ -71,5 +73,5 @@ void exit_loop(void)
 
 int randint(const int minimum, const int maximum)
 {
-	return rand() % maximum + minimum;;
+	return rand() % (maximum + 1) + minimum;
 }
