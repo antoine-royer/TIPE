@@ -51,12 +51,12 @@ void compute_render(struct modele *modele)
 		{
 			for (int x = 0; x < WIN_W; x++)
 			{ 
-				if (courants[y][x][0] != 0 && courants[y][x][1] != 0)
+				if (modele->grille[y][x] > 0)
 				{
 					int direction = randint(0, 2);
 					
 					// Déplacement selon x
-					if ((direction == 0 || direction == 2) && modele->grille[y][x] > 0)
+					if (direction == 0 || direction == 2)
 					{
 						if (courants[y][x][0] > randint(0, 100))
 						{
@@ -71,7 +71,7 @@ void compute_render(struct modele *modele)
 					}
 
 					// Déplacement selon y
-					if ((direction == 1 || direction == 2) && modele->grille[y][x] > 0)
+					if (direction == 1 || direction == 2)
 					{
 						if (courants[y][x][1] > randint(0, 100))
 						{
@@ -84,9 +84,10 @@ void compute_render(struct modele *modele)
 							modele->grille[(y + 1) % WIN_H][x] ++;
 						}
 					}
+
+					if (courants[y][x][0] == 0 || courants[y][x][1] == 0)
+						modele->grille[y][x] = 0;
 				}
-			if (courants[y][x][0] == 0 || courants[y][x][1] == 0)
-					modele->grille[y][x] = 0;
 			}
 		}
 		printf("... terminé\n");
