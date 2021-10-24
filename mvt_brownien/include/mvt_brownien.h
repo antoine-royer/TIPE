@@ -7,8 +7,8 @@
 
 // Paramètres du modèle
 #define NB_STEP 10000
-#define DX 45 // 0 % : gauche ; 100 % droite
-#define DY 55 // 0 % : bas    ; 100 % haut
+#define DX 50 // 0 % : gauche ; 100 % droite
+#define DY 50 // 0 % : bas    ; 100 % haut
 
 
 // sdl_initialisation : initialise la SDL
