@@ -1,3 +1,0 @@
-Thread 1 "carte_courants" received signal SIGSEGV, Segmentation fault.
-0x00007ffff7d1486c in ?? () from /usr/lib/libSDL2-2.0.so.0
-
