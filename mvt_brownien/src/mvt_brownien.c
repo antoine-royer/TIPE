@@ -32,12 +32,12 @@ void compute_render(SDL_Renderer *renderer)
 
 		// Calcul du point suivant
 		int direction = randint(0, 2);
-		if (direction == 0 || direction == 2)
+		if (direction <= 1)
 		{
 			if (DX > randint(0, 100)) x ++;
 			else x --;
 		}
-		if (direction == 1 || direction == 2)
+		if (direction >= 1)
 		{
 			if (DY > randint(0, 100)) y --;
 			else y ++;
