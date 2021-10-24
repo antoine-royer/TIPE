@@ -19,7 +19,7 @@ int main(void)
 
 	// Calcul des points
 	compute_render(&renderer, &carte_fond, modele);
-	SDL_SetWindowTitle(window, "Carte des flux de plastique");
+	SDL_SetWindowTitle(window, "Carte des concentrations en plastique");
 
 	// Attente
 	exit_loop();
