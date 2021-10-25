@@ -8,13 +8,13 @@ output = "#include \"../include/carte_vecteurs.h\"\n\n" + f"uint8_t courants[{si
 
 courants = {
     0:   "{70, 50}, ", # droite 
-    31:  "{60, 40}, ", # droite, bas
-    57:  "{50, 40}, ", # bas
-    85:  "{40, 40}, ", # gauche, bas
+    31:  "{70, 30}, ", # droite, bas
+    57:  "{50, 30}, ", # bas
+    85:  "{30, 30}, ", # gauche, bas
     114: "{30, 50}, ", # gauche
-    145: "{40, 60}, ", # gauche, haut
-    176: "{50, 60}, ", # haut
-    209: "{60, 60}, ", # droite, haut
+    145: "{30, 70}, ", # gauche, haut
+    176: "{50, 70}, ", # haut
+    209: "{70, 70}, ", # droite, haut
     255: "{50, 50}, ", # pas de courant
 }
 
