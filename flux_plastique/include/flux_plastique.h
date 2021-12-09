@@ -4,13 +4,18 @@
 struct modele
 {
 	unsigned int grille[380][686];
+
+	unsigned int proba;
+	unsigned int max;
+
+	unsigned long long int steps;
+
+	uint8_t to_show;
 };
 
-// Paramètres du modèle
+// Paramètres de la fenêtre
 #define WIN_H 380
 #define WIN_W 686
-#define PROBA_PART 55
-#define STEPS 10000
 
 // #define NB_PART 162906
 
@@ -22,6 +27,9 @@ void compute_render(SDL_Renderer **renderer, SDL_Texture **carte_fond, struct mo
 
 // display_grid : affiche la grille du modèle
 void display_grid(SDL_Renderer **renderer, SDL_Texture **carte_fond, const struct modele *modele);
+
+// display_load : affiche la barre de chargement
+void display_load(SDL_Renderer **renderer, const int lenght);
 
 // exit_loop : attend que la fenêtre soit fermée
 void exit_loop(void);

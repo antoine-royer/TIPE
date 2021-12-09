@@ -14,12 +14,17 @@ int main(void)
 	SDL_Renderer *renderer = NULL;
 	SDL_Texture *carte_fond = NULL;
 	
+	printf("Début de la simulation\n");
 	struct modele *modele = malloc(sizeof(struct modele));
 	sdl_initialisation(&window, &renderer, &carte_fond, modele);
+
+	SDL_SetRenderDrawColor(renderer, 60, 60, 60, 255);
 
 	// Calcul des points
 	compute_render(&renderer, &carte_fond, modele);
 	SDL_SetWindowTitle(window, "Carte des concentrations en plastique");
+
+	printf("Simulation terminée\n");
 
 	// Attente
 	exit_loop();
