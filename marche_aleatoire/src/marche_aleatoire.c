@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <SDL2/SDL.h>
 
-#include "../include/mvt_brownien.h"
+#include "../include/marche_aleatoire.h"
 
 void sdl_initialisation(SDL_Window **window, SDL_Renderer **renderer)
 {
@@ -14,7 +14,7 @@ void sdl_initialisation(SDL_Window **window, SDL_Renderer **renderer)
 	SDL_RenderClear(*renderer);
 	SDL_RenderPresent(*renderer);
 	SDL_SetRenderDrawColor(*renderer, 0, 0, 0, 255);
-	SDL_SetWindowTitle(*window, "Mouvement brownien [CHARGEMENT EN COURS]");
+	SDL_SetWindowTitle(*window, "Marche aléatoire [CHARGEMENT EN COURS]");
 }
 
 
@@ -27,6 +27,8 @@ void compute_render(SDL_Renderer *renderer)
 	for (int i = 0; i < NB_STEP; i++)
 	{
 		// Envoie du point courant sur le buffer
+		int color = 200 - (255 * i / NB_STEP);
+		SDL_SetRenderDrawColor(renderer, color, color, color, 255);
 		SDL_RenderDrawPoint(renderer, x, y);
 		SDL_RenderDrawPoint(renderer, x, y);
 

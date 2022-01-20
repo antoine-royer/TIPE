@@ -1,13 +1,13 @@
-#ifndef _MVT_BROWNIEN_H
-#define _MVT_BROWNIEN_H
+#ifndef _MARCHE_ALEAT_H
+#define _MARCHE_ALEAT_H
 
 // Paramètres de la fenêtre
-#define WIN_W 1500
-#define WIN_H 800
+#define WIN_W 600
+#define WIN_H 320
 
 // Paramètres du modèle
 #define NB_STEP 10000
-#define DX 50 // 0 % : gauche ; 100 % droite
+#define DX 60 // 0 % : gauche ; 100 % droite
 #define DY 50 // 0 % : bas    ; 100 % haut
 
 
@@ -23,4 +23,4 @@ void exit_loop(void);
 // randint : renvoie un nombre aléatoire dans [minimum ; maximum]
 int randint(const int minimum, const int maximum);
 
-#endif /* _MVT_BROWNIEN_H */
+#endif /* _MARCHE_ALEAT_H */

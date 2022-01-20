@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <SDL2/SDL.h>
 
-#include "../include/mvt_brownien_animated.h"
+#include "../include/marche_aleatoire_animee.h"
 
 
 void compute_render_animated(SDL_Renderer *renderer)
@@ -20,6 +20,7 @@ void compute_render_animated(SDL_Renderer *renderer)
 		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 
 		// Affichage
+		int count = 0;
 		for (int disp_x = 0; disp_x < WIN_W; disp_x ++)
 		{
 			for (int disp_y = 0; disp_y < WIN_H; disp_y ++)

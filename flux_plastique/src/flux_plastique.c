@@ -90,7 +90,7 @@ void compute_render(SDL_Renderer **renderer, SDL_Texture **carte_fond, struct mo
 					// Déplacement selon x
 					if (direction == 0 || direction == 1)
 					{
-						if (courants[y][x][0] + 2 > randint(0, 100))
+						if (courants[y][x][0] + 2 >= randint(0, 100))
 							new_x = (x + 1) % WIN_W;
 						else
 						{
@@ -102,7 +102,7 @@ void compute_render(SDL_Renderer **renderer, SDL_Texture **carte_fond, struct mo
 					// Déplacement selon y
 					if (direction == 1 || direction == 2)
 					{
-						if (courants[y][x][1] - 2 > randint(0, 100))
+						if (courants[y][x][1] - 2 >= randint(0, 100))
 						{
 							if (y - 1 < 0) new_y = (y + WIN_H - 1) % WIN_H;
 							else new_y = (y - 1) % WIN_H;
@@ -146,10 +146,7 @@ void display_grid(SDL_Renderer **renderer, SDL_Texture **carte_fond, const struc
 		{
 			if (courants[y][x][0] != 0 && courants[y][x][1] != 0 && modele->grille[y][x] > 0)
 			{
-				
-				int couleur = floor(modele->grille[y][x] * 255 / modele->max);
-				SDL_SetRenderDrawColor(*renderer, couleur, 50, 255 - couleur, 255);
-
+				SDL_SetRenderDrawColor(*renderer, 0, 0, 0, 255);
 				SDL_RenderDrawPoint(*renderer, x, y);
 			}
 		}

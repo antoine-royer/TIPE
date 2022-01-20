@@ -2,17 +2,17 @@ CC=gcc
 CFLAGS=
 LDFLAGS=-lSDL2main -lSDL2
 
-EXEC=mvt_brownien
-SRC=src/mvt_brownien.c src/mvt_brownien_animated.c src/main.c
+EXEC=marche_aleatoire
+SRC=src/marche_aleatoire.c src/marche_aleatoire_animee.c src/main.c
 OBJ=$(SRC:.c=.o)
 
 all: $(EXEC) clean
 
 # Compilation Linux
-mvt_brownien: $(OBJ)
+marche_aleatoire: $(OBJ)
 	$(CC) -o $@ $^ $(LDFLAGS)
 
-main.o: include/mvt_brownien.h include/mvt_brownien_animated.h
+main.o: include/marche_aleatoire.h include/marche_aleatoire_animee.h
 
 %.o: %.c
 	$(CC) -o $@ -c $< $(CFLAGS)
