@@ -22,7 +22,7 @@ int main(void)
 
 	// Calcul des points
 	compute_render(&renderer, &carte_fond, modele);
-	SDL_SetWindowTitle(window, "Carte des concentrations en plastique");
+	SDL_SetWindowTitle(window, "Répartition des plastiques");
 
 	printf("Simulation terminée\n");
 

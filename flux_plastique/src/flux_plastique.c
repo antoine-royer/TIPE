@@ -38,7 +38,7 @@ void sdl_initialisation(SDL_Window **window, SDL_Renderer **renderer, SDL_Textur
 	SDL_RenderClear(*renderer);
 	SDL_RenderPresent(*renderer);
 	SDL_SetRenderDrawColor(*renderer, 0, 0, 0, 255);
-	SDL_SetWindowTitle(*window, "Carte des concentrations en plastique [CHARGEMENT EN COURS]");
+	SDL_SetWindowTitle(*window, "Répartition des plastiques [CHARGEMENT EN COURS]");
 
 	// Initialisation de la carte
 	SDL_Surface *carte_vierge = IMG_Load("assets/carte_vierge.png");
@@ -60,15 +60,8 @@ void compute_render(SDL_Renderer **renderer, SDL_Texture **carte_fond, struct mo
 		// Nettoyage de l'écran
 		SDL_SetRenderDrawColor(*renderer, 255, 255, 255, 255);
 		SDL_RenderClear(*renderer);
-		SDL_SetRenderDrawColor(*renderer, 0, 0, 0, 255);
-
-		SDL_RenderDrawPoint(*renderer, 86, 188);	
-		SDL_RenderDrawPoint(*renderer, 86, 189);
-		SDL_RenderDrawPoint(*renderer, 86, 190);
-
-		SDL_RenderDrawPoint(*renderer, 600, 188);	
+		SDL_SetRenderDrawColor(*renderer, 0, 0, 0, 255);	
 		SDL_RenderDrawPoint(*renderer, 600, 189);
-		SDL_RenderDrawPoint(*renderer, 600, 190);
 	}
 
 	for (int i = 0; i < modele->steps; i++)
@@ -84,35 +77,31 @@ void compute_render(SDL_Renderer **renderer, SDL_Texture **carte_fond, struct mo
 			{ 
 				if (courants[y][x][0] != 0 && courants[y][x][1] != 0 && modele->grille[y][x] > 0)
 				{
-					int direction = randint(0, 3);
-					int new_x = x, new_y = y;
+					int direction = randint(0, 2);
+					int d = 0, new_x = -1, new_y = -1;
 					
 					// Déplacement selon x
 					if (direction == 0 || direction == 1)
 					{
-						if (courants[y][x][0] + 2 >= randint(0, 100))
-							new_x = (x + 1) % WIN_W;
-						else
-						{
-							if (x - 1 < 0) new_x = (x + WIN_W - 1) % WIN_W;
-							else new_x = (x - 1) % WIN_W;
-						}
+						d = randint(0, 100);
+						if (courants[y][x][0] > d && x + 1 < WIN_W)
+							new_x = x + 1;
+						if (courants[y][x][0] < d && x - 1 >= 0)
+							new_x = x - 1;
 					}
 
 					// Déplacement selon y
 					if (direction == 1 || direction == 2)
 					{
-						if (courants[y][x][1] - 2 >= randint(0, 100))
-						{
-							if (y - 1 < 0) new_y = (y + WIN_H - 1) % WIN_H;
-							else new_y = (y - 1) % WIN_H;
-						}
-						else
-							new_y = (y + 1) % WIN_H;
+						d = randint(0, 100);
+						if (courants[y][x][1] > d && y - 1 >= 0)
+							new_y = y - 1;
+						if (courants[y][x][1] < d && y + 1 < WIN_H)
+							new_y = y + 1;
 					}
 
 					// Mise à jour de la grille
-					if (courants[new_y][new_x][0] != 0 && courants[new_y][new_x][1] != 0)
+					if (new_x != -1 && new_y != -1 && courants[new_y][new_x][0] != 0 && courants[new_y][new_x][1] != 0)
 					{
 						int nb = 0;
 						if (modele->grille[new_y][new_x] + modele->grille[y][x] <= modele->max)
